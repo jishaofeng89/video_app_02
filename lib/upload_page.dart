@@ -13,6 +13,8 @@ class _UploadPageState extends State<UploadPage> {
 
   }
 
+  TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +29,36 @@ class _UploadPageState extends State<UploadPage> {
           ),
         ],
       ),
-      body: Center(
-        child: Text('非常好'),
+      body: Container(
+        margin: EdgeInsets.all(10),
+        child: Column(
+          children: <Widget>[
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(
+                icon: Icon(Icons.title),
+                labelText: "给你的作品一个标题吧",
+              ),
+            ),
+            Container(
+              height: 150,
+              margin: EdgeInsets.only(top: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                image: DecorationImage(
+                  image: AssetImage('assets/images/cloud_upload.png'),
+                  fit: BoxFit.contain,
+                ),
+              ),
+              alignment: Alignment.centerLeft,
+              child: FlatButton(
+                onPressed: () {},
+                child: Text('上传作品'),
+                color: Colors.transparent,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
