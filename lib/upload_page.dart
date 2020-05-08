@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UploadPage extends StatefulWidget {
   UploadPage({Key key}) : super(key: key);
@@ -10,7 +13,9 @@ class UploadPage extends StatefulWidget {
 class _UploadPageState extends State<UploadPage> {
 
   pickVideo() async {
-
+    File file = await ImagePicker.pickVideo(
+          source: ImageSource.camera, maxDuration: const Duration(seconds: 10));
+    print(file);
   }
 
   TextEditingController _controller = TextEditingController();
@@ -20,14 +25,6 @@ class _UploadPageState extends State<UploadPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('上传作品'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.videocam),
-            onPressed: () {
-              pickVideo();
-            },
-          ),
-        ],
       ),
       body: Container(
         margin: EdgeInsets.all(10),
@@ -52,7 +49,9 @@ class _UploadPageState extends State<UploadPage> {
               ),
               alignment: Alignment.centerLeft,
               child: FlatButton(
-                onPressed: () {},
+                onPressed: () {
+                  pickVideo();
+                },
                 child: Text('上传作品'),
                 color: Colors.transparent,
               ),
